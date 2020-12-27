@@ -473,3 +473,5 @@ C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Identi
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Index.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CreateButtonPartial.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Create.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CreateAndBackToListButton.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TableButtonPartial.cshtml.g.cs
