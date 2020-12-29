@@ -18,6 +18,9 @@ namespace Spice.Areas.Admin.Controllers
         {
             _db = db;
         }
+
+        [TempData]
+        public string StatusMessage { get; set; }
         
         //GET INDEX
         public async Task<IActionResult> Index()
@@ -51,7 +54,7 @@ namespace Spice.Areas.Admin.Controllers
                 if (doesSubCategoriesExists.Count()>0)
                 {
                     //Error, only unique subcategories within a category should be entered
-
+                    StatusMessage = "Error : Sub Category exists under " + doesSubCategoriesExists.First().Category.Name + " category. Please use another name.";
                 }
                 else
                 {
@@ -65,7 +68,8 @@ namespace Spice.Areas.Admin.Controllers
             {
                 CategoryList = await _db.Category.ToListAsync(),
                 SubCategory = model.SubCategory,
-                SubCategoryList = await _db.SubCategory.OrderBy(p => p.Name).Select(p => p.Name).ToListAsync()
+                SubCategoryList = await _db.SubCategory.OrderBy(p => p.Name).Select(p => p.Name).ToListAsync(),
+                StatusMessage = StatusMessage
             };
             return View(modelVM);
 
