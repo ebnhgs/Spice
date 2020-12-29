@@ -63,6 +63,7 @@ namespace Spice.Areas.Admin.Controllers
             return View(category);
         }
 
+        //POST - EDIT
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Category category)
