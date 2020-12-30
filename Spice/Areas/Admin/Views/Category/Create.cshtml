@@ -1,8 +1,8 @@
-﻿    @model Category
-    @{
-        ViewData["Title"] = "Create";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+﻿@model Category
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <br />
 <h2 class="text-info">Create Category</h2>
@@ -35,3 +35,7 @@
         </div>
     </div>
 </form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

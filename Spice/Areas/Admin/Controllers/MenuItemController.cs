@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Spice.Data;
 using Spice.Models.ViewModels;
+using Spice.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,6 +42,60 @@ namespace Spice.Areas.Admin.Controllers
         public IActionResult Create()
         {
             return View(MenuItemVM);
+        }
+
+        //POST - CREATE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePOST()
+        {
+            MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
+
+            if (ModelState.IsValid)
+            {
+                return View(MenuItemVM);
+            }
+
+
+            _db.MenuItem.Add(MenuItemVM.MenuItem);
+            await _db.SaveChangesAsync();
+
+            
+            
+            //Work on the image saving section
+            
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            //extract files/image loaded by user
+            var files = HttpContext.Request.Form.Files;
+
+            //extract Menu Item from Db, what has been saved
+            var menuItemFromDb = await _db.MenuItem.FindAsync(MenuItemVM.MenuItem.Id);
+
+            if (files.Count > 0)
+            {
+                //files has been uploaded
+                var uploads = Path.Combine(webRootPath, "images");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var filesStream = new FileStream(Path.Combine(uploads, MenuItemVM.MenuItem.Id + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filesStream);
+                }
+                menuItemFromDb.Image = @"\images\" + MenuItemVM.MenuItem.Id + extension;
+            }
+            else
+            {
+                //no file was uploaded, so use default image
+                var uploads = Path.Combine(webRootPath, @"images\" + SD.DefaultFoodImage);
+                System.IO.File.Copy(uploads, webRootPath + @"images\" + MenuItemVM.MenuItem.Id + ".png");
+                //update entry in Db
+                menuItemFromDb.Image = @"\images\" + MenuItemVM.MenuItem.Id + ".png";
+            }
+
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
