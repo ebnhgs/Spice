@@ -97,17 +97,16 @@
                 getSubCategory();
             });
         });
-
         function getSubCategory() {
             var url = '@Url.Content("~/")' + "Admin/SubCategory/GetSubCategory";
-            var ddlsource = '#CategoryId';
-            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+            var ddlsoruce = '#CategoryId';
+            $.getJSON(url, { id: $(ddlsoruce).val() }, function (data) {
                 var items = '';
-                $('#SubCategoryId').empty();
+                //$('#SubCategoryId').empty();
                 $.each(data, function (i, subcategory) {
-                    items+= "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>"
+                    items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
                 });
-                $(SubCategoryId).html(items);
+                $('#SubCategoryId').html(items);
             })
         }
     </script>

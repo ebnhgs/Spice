@@ -45,30 +45,26 @@ namespace Spice.Areas.Admin.Controllers
         }
 
         //POST - CREATE
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePOST()
         {
-            MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
+            MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"]);
+            //MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(MenuItemVM);
             }
 
-
             _db.MenuItem.Add(MenuItemVM.MenuItem);
             await _db.SaveChangesAsync();
 
-            
-            
             //Work on the image saving section
-            
+
             string webRootPath = _hostingEnvironment.WebRootPath;
-            //extract files/image loaded by user
             var files = HttpContext.Request.Form.Files;
 
-            //extract Menu Item from Db, what has been saved
             var menuItemFromDb = await _db.MenuItem.FindAsync(MenuItemVM.MenuItem.Id);
 
             if (files.Count > 0)
@@ -85,17 +81,15 @@ namespace Spice.Areas.Admin.Controllers
             }
             else
             {
-                //no file was uploaded, so use default image
+                //no file was uploaded, so use default
                 var uploads = Path.Combine(webRootPath, @"images\" + SD.DefaultFoodImage);
-                System.IO.File.Copy(uploads, webRootPath + @"images\" + MenuItemVM.MenuItem.Id + ".png");
-                //update entry in Db
+                System.IO.File.Copy(uploads, webRootPath + @"\images\" + MenuItemVM.MenuItem.Id + ".png");
                 menuItemFromDb.Image = @"\images\" + MenuItemVM.MenuItem.Id + ".png";
             }
 
             await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
-
         }
     }
 }
