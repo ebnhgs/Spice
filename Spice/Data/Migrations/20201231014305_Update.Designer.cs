@@ -10,8 +10,8 @@ using Spice.Data;
 namespace Spice.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201229200436_AddMenuItemToDb")]
-    partial class AddMenuItemToDb
+    [Migration("20201231014305_Update")]
+    partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
