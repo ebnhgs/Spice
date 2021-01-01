@@ -236,6 +236,68 @@ namespace Spice.Data.Migrations
                 });
 
             modelBuilder.Entity("Spice.Models.MenuItem", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<int>("CategoryId");
+
+                b.Property<string>("Description");
+
+                b.Property<string>("Image");
+
+                b.Property<string>("Name")
+                    .IsRequired();
+
+                b.Property<double>("Price");
+
+                b.Property<string>("Spicyness");
+
+                b.Property<int>("SubCategoryId");
+
+                b.HasKey("Id");
+
+                b.HasIndex("CategoryId");
+
+                b.HasIndex("SubCategoryId");
+
+                b.ToTable("MenuItem");
+            });
+
+            modelBuilder.Entity("Spice.Models.Coupon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CopounType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("IsActiveFlag")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("MinimumAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Picture")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupon");
+                });
+
+            modelBuilder.Entity("Spice.Models.MenuItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

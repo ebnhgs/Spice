@@ -12,7 +12,8 @@
 
 <form method="post" enctype="multipart/form-data">
     <div class="border backgroundWhite">
-
+        @*<input type="hidden" name="CategoryId" asp-for="MenuItem.CategoryId" />
+        <input type="hidden" name="SubCategoryId" asp-for="MenuItem.SubCategoryId" />*@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
             <div class="col-2">
@@ -62,7 +63,7 @@
                 <label asp-for="MenuItem.SubCategoryId" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <select asp-for="@Model.MenuItem.SubCategoryId" id="SubCategoryId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))" class="form-control"></select>
+                <select asp-for="@Model.MenuItem.SubCategoryId" name="SubCategoryId" id="SubCategoryId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))" class="form-control"></select>
             </div>
         </div>
         <div class="form-group row">
@@ -75,13 +76,13 @@
         </div>
         <div class="form-group row">
             <div class="col-5 offset-2">
-                <partial name="_CreateAndBackToListButton" />
+                <partial name="_CreateAndBackToListButtonFIX" />
             </div>
         </div>
     </div>
 </form>
 
-@section Scripts{ 
+@section Scripts{
     <script>
         tinymce.init({
             selector: 'textarea',
@@ -90,6 +91,7 @@
         });
     </script>
 
+
     <script type="text/javascript">
         $(document).ready(function () {
             getSubCategory();
@@ -97,19 +99,20 @@
                 getSubCategory();
             });
         });
-
         function getSubCategory() {
             var url = '@Url.Content("~/")' + "Admin/SubCategory/GetSubCategory";
-            var ddlsource = '#CategoryId';
-            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+            var ddlsoruce = '#CategoryId';
+            $.getJSON(url, { id: $(ddlsoruce).val() }, function (data) {
                 var items = '';
                 $('#SubCategoryId').empty();
                 $.each(data, function (i, subcategory) {
-                    items+= "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>"
+                    items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
                 });
-                $(SubCategoryId).html(items);
+                $('#SubCategoryId').html(items);
             })
         }
-
     </script>
+
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

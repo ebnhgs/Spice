@@ -7,7 +7,7 @@ namespace Spice.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Spiciness",
+                name: "Spicyness",
                 table: "MenuItem");
 
             migrationBuilder.AddColumn<string>(
@@ -23,7 +23,7 @@ namespace Spice.Data.Migrations
                 table: "MenuItem");
 
             migrationBuilder.AddColumn<string>(
-                name: "Spiciness",
+                name: "Spicyness",
                 table: "MenuItem",
                 type: "nvarchar(max)",
                 nullable: true);

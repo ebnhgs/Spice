@@ -45,7 +45,7 @@ namespace Spice.Areas.Admin.Controllers
         }
 
         //POST - CREATE
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SubCategoryAndCategoryViewModel model)
         {
