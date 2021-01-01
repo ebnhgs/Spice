@@ -14,6 +14,5 @@ namespace Spice.Models
         [Display(Name = "Category Name")]
         [Required]
         public string Name { get; set; }
-
     }
 }
