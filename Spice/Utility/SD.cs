@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Spice.Utility
 {
 
-    public class SD
+    public static class SD
     {
         public const string DefaultFoodImage = "default_food.png";
     }

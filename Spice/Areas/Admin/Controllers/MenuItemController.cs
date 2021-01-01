@@ -87,6 +87,8 @@ namespace Spice.Areas.Admin.Controllers
                 menuItemFromDb.Image = @"\images\" + MenuItemVM.MenuItem.Id + ".png";
             }
 
+            await _db.SaveChangesAsync();
+
 
             return RedirectToAction(nameof(Index));
         }
