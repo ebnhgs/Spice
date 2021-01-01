@@ -44,21 +44,21 @@ namespace Spice.Areas.Admin.Controllers
             return View(MenuItemVM);
         }
 
-        //POST - CREATE
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePOST()
         {
-            MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"]);
-            //MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
+            MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
 
             if (!ModelState.IsValid)
+
             {
                 return View(MenuItemVM);
             }
 
             _db.MenuItem.Add(MenuItemVM.MenuItem);
             await _db.SaveChangesAsync();
+
 
             //Work on the image saving section
 
@@ -87,7 +87,6 @@ namespace Spice.Areas.Admin.Controllers
                 menuItemFromDb.Image = @"\images\" + MenuItemVM.MenuItem.Id + ".png";
             }
 
-            await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
