@@ -49,7 +49,8 @@ namespace Spice.Areas.Admin.Controllers
         public async Task<IActionResult> CreatePOST()
         {
             MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
-            
+            MenuItemVM.MenuItem.CategoryId = Convert.ToInt32(Request.Form["CategoryId"].ToString());
+
 
             if (!ModelState.IsValid)
 
@@ -122,7 +123,7 @@ namespace Spice.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            
+
             MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
 
 
@@ -130,12 +131,8 @@ namespace Spice.Areas.Admin.Controllers
 
             {
                 MenuItemVM.SubCategory = await _db.SubCategory.Where(s=>s.CategoryId == MenuItemVM.MenuItem.CategoryId).ToListAsync();
-
                 return View(MenuItemVM);
             }
-
-            _db.MenuItem.Add(MenuItemVM.MenuItem);
-            await _db.SaveChangesAsync();
 
 
             //Work on the image saving section
@@ -175,7 +172,6 @@ namespace Spice.Areas.Admin.Controllers
             menuItemFromDb.SubCategoryId = MenuItemVM.MenuItem.SubCategoryId;
 
             await _db.SaveChangesAsync();
-
 
             return RedirectToAction(nameof(Index));
         }
