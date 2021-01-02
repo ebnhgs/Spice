@@ -32,29 +32,29 @@
                         <th>
                             @Html.DisplayNameFor(m => m.IsActive)
                         </th>
-                        
+
                         <th></th>
                         <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(m => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.Discount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.MinimumAmount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.IsActive)
-                    </td>
-                    <td>
-                        <partial name="_TableButtonPartial" model="item.Id" />
-                    </td>
-                </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Discount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.MinimumAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.IsActive)
+                            </td>
+                            <td>
+                                <partial name="_TableButtonPartial" model="item.Id" />
+                            </td>
+                        </tr>
                     }
                 </table>
             }
@@ -65,3 +65,10 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}

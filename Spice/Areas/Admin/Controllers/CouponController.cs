@@ -23,5 +23,10 @@ namespace Spice.Areas.Admin.Controllers
             var coupons = await _db.Coupon.ToListAsync();
             return View(coupons);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
