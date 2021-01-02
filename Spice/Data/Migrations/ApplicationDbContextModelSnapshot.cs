@@ -235,36 +235,6 @@ namespace Spice.Data.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Spice.Models.MenuItem", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                b.Property<int>("CategoryId");
-
-                b.Property<string>("Description");
-
-                b.Property<string>("Image");
-
-                b.Property<string>("Name")
-                    .IsRequired();
-
-                b.Property<double>("Price");
-
-                b.Property<string>("Spicyness");
-
-                b.Property<int>("SubCategoryId");
-
-                b.HasKey("Id");
-
-                b.HasIndex("CategoryId");
-
-                b.HasIndex("SubCategoryId");
-
-                b.ToTable("MenuItem");
-            });
-
             modelBuilder.Entity("Spice.Models.Coupon", b =>
                 {
                     b.Property<int>("Id")
