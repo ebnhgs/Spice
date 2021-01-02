@@ -177,7 +177,7 @@ namespace Spice.Areas.Admin.Controllers
         }
 
 
-        //GET : Details MenuItem
+        //GET : Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -192,6 +192,24 @@ namespace Spice.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            return View(MenuItemVM);
+        }
+
+
+        //GET - DELETE
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            MenuItemVM.MenuItem = await _db.MenuItem.Include(m => m.Category).Include(m => m.SubCategory).SingleOrDefaultAsync(m => m.Id == id);
+            
+            if (MenuItemVM.MenuItem == null)
+            {
+                return NotFound();
+            }
             return View(MenuItemVM);
         }
 
