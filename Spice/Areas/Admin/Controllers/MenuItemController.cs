@@ -214,6 +214,36 @@ namespace Spice.Areas.Admin.Controllers
         }
 
 
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int? id)
+        {
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            var menuItem = await _db.MenuItem.SingleOrDefaultAsync(m => m.Id == id);
+
+
+            if (menuItem != null)
+            {
+                //Delete original file
+                var imagePath = Path.Combine(webRootPath, menuItem.Image.TrimStart('\\'));
+
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+
+                //Remove the Menu Item from the Db
+                _db.Remove(menuItem);
+                await _db.SaveChangesAsync();
+                
+            }
+
+            return RedirectToAction(nameof(Index));
+
+
+        }
+
+
 
 
 
