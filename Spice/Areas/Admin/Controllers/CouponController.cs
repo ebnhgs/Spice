@@ -71,6 +71,25 @@ namespace Spice.Areas.Admin.Controllers
         }
 
 
+        //GET - EDIT
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Coupon = await _db.Coupon.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (Coupon == null)
+            {
+                return NotFound();
+            }
+
+            return View(Coupon);
+        }
+
+
 
     }
 }
