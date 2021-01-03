@@ -49,7 +49,7 @@ namespace Spice.Areas.Admin.Controllers
         public async Task<IActionResult> CreatePOST()
         {
             MenuItemVM.MenuItem.SubCategoryId = Convert.ToInt32(Request.Form["SubCategoryId"].ToString());
-            MenuItemVM.MenuItem.CategoryId = Convert.ToInt32(Request.Form["CategoryId"].ToString());
+            //MenuItemVM.MenuItem.CategoryId = Convert.ToInt32(Request.Form["CategoryId"].ToString());
 
 
             if (!ModelState.IsValid)
