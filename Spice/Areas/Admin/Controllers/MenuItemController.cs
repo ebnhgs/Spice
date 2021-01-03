@@ -222,7 +222,7 @@ namespace Spice.Areas.Admin.Controllers
             var menuItem = await _db.MenuItem.SingleOrDefaultAsync(m => m.Id == id);
 
 
-            if (menuItem != null)
+            if (menuItem.Image != null)
             {
                 //Delete original file
                 var imagePath = Path.Combine(webRootPath, menuItem.Image.TrimStart('\\'));
@@ -231,12 +231,13 @@ namespace Spice.Areas.Admin.Controllers
                 {
                     System.IO.File.Delete(imagePath);
                 }
+            }
 
                 //Remove the Menu Item from the Db
                 _db.Remove(menuItem);
                 await _db.SaveChangesAsync();
                 
-            }
+            
 
             return RedirectToAction(nameof(Index));
 
