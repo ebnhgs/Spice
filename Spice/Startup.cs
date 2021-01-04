@@ -39,6 +39,20 @@ namespace Spice
 
             services.AddSingleton<IEmailSender, EmailSender>();
 
+            services.ConfigureApplicationCookie(options =>
+
+            {
+
+                options.LoginPath = $"/Identity/Account/Login";
+
+                options.LogoutPath = $"/Identity/Account/Logout";
+
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+
+            });
+
+
+
             services.AddControllersWithViews();
             
             services.AddRazorPages().AddRazorRuntimeCompilation();
