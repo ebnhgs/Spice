@@ -50,6 +50,16 @@
 
 <div class="backgroundWhite container">
 
+    <ul id="menu-filters" class="menu-filter-list list-inline text-center menu-filters">
+        <li class="active btn btn-secondary ml-1 mr-1" data-filter=".menu-restaurant">Show All</li>
+
+        @foreach(var item in Model.Category)
+        {
+            <li class="ml-1 mr-1 menu-filter" data-filter=".@item.Name.Replace(" ",string.Empty)">@item.Name</li>
+        }
+    </ul>
+
+
     @foreach (var category in Model.Category)
     {
         <div class="row" id="menu-wrapper">
@@ -57,3 +67,40 @@
         </div>
     }
 </div>
+
+@section Scripts{
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" 
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+            crossorigin="anonymous"></script>
+
+    <script>
+        //retrieves where the toggle will occur, the page has a div with class post
+        var posts = $('.post');
+
+        //gets called everytime a menu item category is clicked
+        (function ($) {
+
+            $("#menu-filters li").click(function () {
+                $("#menu-filters li").removeClass('active btn btn-secondary');
+                $(this).addClass('active btn btn-secondary');
+
+                //data (data-filter) is assigned to each li (MenuItem Category)
+                var selectedFilter = $(this).data("filter");
+
+                //'Show All' will be selected by defaulut
+                $(".menu-restaurant").fadeOut();
+
+                setTimeout(function () {
+                    $(selectedFilter).slideDown();
+                }, 300);
+            });
+
+
+
+        })(jQuery);
+
+    </script>
+    
+   
+}
