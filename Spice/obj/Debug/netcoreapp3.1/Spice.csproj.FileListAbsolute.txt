@@ -498,3 +498,4 @@ C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csproj.CopyC
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.dll
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.pdb
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.genruntimeconfig.cache
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
