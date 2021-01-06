@@ -5,6 +5,7 @@ using Spice.Data;
 using Spice.Models;
 using Spice.Models.ViewModels;
 using Spice.Utility;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -145,7 +146,7 @@ namespace Spice.Areas.Customer.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Summary")]
-        public async Task<IActionResult> SummaryPOST()
+        public async Task<IActionResult> SummaryPOST(string stripeToken)
         {
             //Retried user id of logged in user
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -204,8 +205,45 @@ namespace Spice.Areas.Customer.Controllers
             HttpContext.Session.SetInt32(SD.ssShoppingCartCount, 0);
             await _db.SaveChangesAsync();
 
+            //make transaction to stripe using stripe token
+            var options = new ChargeCreateOptions
+            {
+                Amount = Convert.ToInt32(detailCart.OrderHeader.OrderTotal * 100),
+                Currency = "USD",
+                Description = "Order ID : " + detailCart.OrderHeader.Id,
+                Source = stripeToken
+            };
+
+            //makes actual transaction
+            var service = new ChargeService();
+            Charge charge = service.Create(options);
+
+            
+            if (charge.BalanceTransactionId == null)
+            {
+                //error while charging credit card
+                detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusRejected;
+            }
+            else
+            {
+                detailCart.OrderHeader.TransactionId = charge.BalanceTransactionId;
+            }
+
+            if (charge.Status.ToLower() == "succeeded")
+            {
+                detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusApproved;
+                detailCart.OrderHeader.Status = SD.StatusSubmitted;
+            }
+            else
+            {
+                detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusRejected;
+            }
+
+            await _db.SaveChangesAsync();
+
             return RedirectToAction("Index", "Home");
             //return RedirectToAction("Confirm", "Order", new { id = detailCart.OrderHeader.Id });
+
 
         }
 
