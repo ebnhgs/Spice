@@ -1,4 +1,7 @@
 ﻿@model Spice.Models.ViewModels.OrderDetailsCart
+@using Microsoft.Extensions.Options
+
+@inject IOptions<Spice.Utility.StripeSettings> Stripe
 
 @{
     ViewData["Title"] = "Summary";
@@ -38,7 +41,7 @@
                                             <label>Name</label>
                                         </div>
                                         <div class="col-9 ">
-                                            <input asp-for="@Model.OrderHeader.PickupName" type="text" class="form-control" />
+                                            <input asp-for="@Model.OrderHeader.PickupName" type="text" id="txtName" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -46,7 +49,7 @@
                                             <label>Phone</label>
                                         </div>
                                         <div class="col-9 ">
-                                            <input asp-for="@Model.OrderHeader.PickupPhoneNumber" type="text" class="form-control" />
+                                            <input asp-for="@Model.OrderHeader.PickupPhoneNumber" type="text" id="txtPhone" class ="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -63,14 +66,6 @@
                                         </div>
                                         <div class="col-9 ">
                                             <input asp-for="@Model.OrderHeader.PickUpTime" id="timepicker" value="" type="text" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="row my-1">
-                                        <div class="col-3">
-                                            <label>Name</label>
-                                        </div>
-                                        <div class="col-9 ">
-                                            <input asp-for="@Model.OrderHeader.PickupName" type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -122,7 +117,32 @@
                         </div>
                     </div>
                     <div class="card-footer">
+                        <div class="row">
+                            <div class="col-12 col-md-4 offset-md-8">
 
+                                @{
+                                    var OrderTotalForStripe = Model.OrderHeader.OrderTotal * 100;
+                                }
+
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
+                                        data-key="@Stripe.Value.PublishableKey" 
+                                        data-amount="@OrderTotalForStripe" 
+                                        data-name="Spice Restaurant"
+                                        data-label="Place Order"
+                                        data-description="Good Food Good Mood" 
+                                        data-locale="auto" 
+                                        data-allow-remember-me="false"
+                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
+                                </script>
+                                <script>
+                                    document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                                </script>
+
+                                <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">
+                                    Place Order
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,6 +219,32 @@
             setPickUpTime();
         });
 
+
+        function validateInput() {
+            var time = document.getElementById("timepicker").value;
+            var dt = document.getElementById("datepicker").value;
+            var name = document.getElementById("txtName").value;
+            var phone = document.getElementById("txtPhone").value;
+            if (dt.toString().length == 0) {
+                alert("Please select pickup date")
+                return false;
+            }
+            else if (time.toString().length == 0) {
+                alert("Please select pickup time")
+                return false;
+            }
+            else if (name.toString().length == 0) {
+                alert("Please enter pickup name")
+                return false;
+            }
+            else if (phone.toString().length == 0) {
+                alert("Please enter a phone number")
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
 
     </script>

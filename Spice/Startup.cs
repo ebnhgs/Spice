@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Spice.Data;
 using Spice.Services;
+using Spice.Utility;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,8 @@ namespace Spice
             services.AddIdentity<IdentityUser,IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             services.AddSingleton<IEmailSender, EmailSender>();
 
@@ -87,6 +91,8 @@ namespace Spice
             app.UseSession();
 
             app.UseRouting();
+
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
 
             app.UseAuthentication();
             app.UseAuthorization();

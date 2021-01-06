@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DOTkAvS1ehwljHlKyszKycZVJ0TDUMHZ+huZy+bLhtmS+r8+YX0nL8LRI2JVANKvupkSOoYq4TH+WQJfbrR6Lg==",
+  "dgSpecHash": "9cG9ixbdWUkXYNZdz9nAe0EnWGAZtpbtGLZ3Y2aVhOTVU1DsMJgwfvFxq80RFsQMM9CX4cS+vwzPDAkS9N8zeA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ebn\\source\\repos\\Spice\\Spice\\Spice.csproj",
   "expectedPackageFiles": [
@@ -89,6 +89,7 @@
     "C:\\Users\\ebn\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\ebn\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\ebn\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\ebn\\.nuget\\packages\\stripe.net\\39.31.0\\stripe.net.39.31.0.nupkg.sha512",
     "C:\\Users\\ebn\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\ebn\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\ebn\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
