@@ -326,6 +326,7 @@ C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Microsoft.VisualSt
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Stripe.net.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
@@ -398,6 +399,7 @@ C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\win-x86\n
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csprojAssemblyReference.cache
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.AssemblyInfoInputs.cache
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.AssemblyInfo.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csproj.CoreCompileInputs.cache
@@ -431,8 +433,12 @@ C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\SubCategory\Details.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\SubCategory\Edit.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\SubCategory\Index.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Index.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Summary.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Details.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Index.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Privacy.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\_ViewImports.cshtml.g.cs
@@ -497,9 +503,6 @@ C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csproj.CopyC
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.dll
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.pdb
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.genruntimeconfig.cache
-C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
-C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Home\Details.cshtml.g.cs
-C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Index.cshtml.g.cs
-C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Summary.cshtml.g.cs
-C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csprojAssemblyReference.cache
-C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Stripe.net.dll
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_IndividualOrderDetails.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\OrderHistory.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Cart\Confirm.cshtml.g.cs
