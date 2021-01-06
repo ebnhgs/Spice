@@ -82,7 +82,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item d-flex justify-content-between bg-light">
                                         <span class="text-info"> Total (USD)</span>
-                                        <strong class="text-info"><span id="txtOrderTotal">@String.Format("{0:C}", Convert.ToInt32(Model.OrderHeader.OrderTotal))</span></strong>
+                                        <strong class="text-info">$ <span id="txtOrderTotal">@Model.OrderHeader.OrderTotal</span></strong>
                                     </li>
                                 </ul>
                             </div>
@@ -106,4 +106,25 @@
     }
 
 </form>
+
+@section Scripts{ 
+    <script>
+        $(function () {
+            var couponCode = document.getElementById("txtCouponCode").value;
+
+            if (couponCode.length > 0) {
+                document.getElementById('btnCoupon').style.display = 'none';
+                document.getElementById('btnRemoveCoupon').style.display = '';
+            }
+            else {
+                document.getElementById('btnCoupon').style.display = '';
+                document.getElementById('btnRemoveCoupon').style.display = 'none';
+            }
+        });
+    </script>
+}
+
+
+    
+
 
