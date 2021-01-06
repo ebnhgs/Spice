@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Spice.Data;
 using Spice.Models.ViewModels;
@@ -33,7 +34,6 @@ namespace Spice.Areas.Customer.Controllers
             {
                 OrderHeader = new Models.OrderHeader()
             };
-
             detailCart.OrderHeader.OrderTotal = 0;
 
             //Retried user id of logged in user
@@ -67,9 +67,33 @@ namespace Spice.Areas.Customer.Controllers
             //set order total original to order total prior to user adding any coupons
             detailCart.OrderHeader.OrderTotalOriginal = detailCart.OrderHeader.OrderTotal;
 
+            //Check if session is active
+            if (HttpContext.Session.GetString(SD.ssCouponCode) != null)
+            {
+                detailCart.OrderHeader.CouponCode = HttpContext.Session.GetString(SD.ssCouponCode);
+                var couponFromDb = await _db.Coupon.Where(c => c.Name.ToLower() == detailCart.OrderHeader.CouponCode.ToLower()).FirstOrDefaultAsync();
+                detailCart.OrderHeader.OrderTotal = SD.DiscountedPrice(couponFromDb, detailCart.OrderHeader.OrderTotalOriginal);
+            }
+
+
+            //return view model to the View
             return View(detailCart);
 
         
         }
+
+
+        public IActionResult AddCoupon()
+        {
+            if (detailCart.OrderHeader.CouponCode == null)
+            {
+                detailCart.OrderHeader.CouponCode = "";
+            }
+            HttpContext.Session.SetString(SD.ssCouponCode, detailCart.OrderHeader.CouponCode);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
