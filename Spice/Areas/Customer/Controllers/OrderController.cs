@@ -16,68 +16,79 @@ using Stripe;
 
 namespace Spice.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class OrderController : Controller
     {
+        private readonly ApplicationDbContext _db;
 
-        [Area("Customer")]
-        public class CartController : Controller
+        [BindProperty]
+        public OrderDetailsCart detailCart { get; set; }
+
+        public OrderController(ApplicationDbContext db)
         {
-            private readonly ApplicationDbContext _db;
+            _db = db;
+        }
 
-            [BindProperty]
-            public OrderDetailsCart detailCart { get; set; }
 
-            public CartController(ApplicationDbContext db)
+
+        //[Authorize]
+        public async Task<IActionResult> Confirm(int id)
+        {
+            //Retried user id of logged in user
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel()
             {
-                _db = db;
-            }
+                OrderHeader = await _db.OrderHeader.Include(o => o.ApplicationUser).FirstOrDefaultAsync(o => o.Id == id && o.userId == claim.Value),
+                OrderDetails = await _db.OrderDetails.Where(o => o.OrderId == id).ToListAsync()
+            };
+
+            return View(orderDetailsViewModel);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> OrderHistory()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
 
+            List<OrderDetailsViewModel> orderList = new List<OrderDetailsViewModel>();
+            List<OrderHeader> OrderHeaderList = await _db.OrderHeader.Include(o => o.ApplicationUser).Where(u => u.userId == claim.Value).ToListAsync();
 
-            //[Authorize]
-            public async Task<IActionResult> Confirm(int id)
+            foreach (OrderHeader item in OrderHeaderList)
             {
-                //Retried user id of logged in user
-                var claimsIdentity = (ClaimsIdentity)User.Identity;
-                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-                OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel()
+                OrderDetailsViewModel individual = new OrderDetailsViewModel
                 {
-                    OrderHeader = await _db.OrderHeader.Include(o => o.ApplicationUser).FirstOrDefaultAsync(o => o.Id == id && o.userId == claim.Value),
-                    OrderDetails = await _db.OrderDetails.Where(o => o.OrderId == id).ToListAsync()
+                    OrderHeader = item,
+                    OrderDetails = await _db.OrderDetails.Where(o => o.OrderId == item.Id).ToListAsync()
                 };
-
-                return View(orderDetailsViewModel);
+                orderList.Add(individual);
             }
 
-            [Authorize]
-            public async Task<IActionResult> OrderHistory()
+            return View(orderList);
+
+        }
+
+
+        public async Task<IActionResult> GetOrderDetails(int Id)
+        {
+
+            OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel()
             {
-                var claimsIdentity = (ClaimsIdentity)User.Identity;
-                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                OrderHeader = await _db.OrderHeader.FirstOrDefaultAsync(m=>m.Id == Id),
+                OrderDetails = await _db.OrderDetails.Where(m => m.OrderId == Id).ToListAsync()
+            };
+            orderDetailsViewModel.OrderHeader.ApplicationUser = await _db.ApplicationUser.FirstOrDefaultAsync(u => u.Id == orderDetailsViewModel.OrderHeader.userId);
 
+            return PartialView("_IndividualOrderDetails", orderDetailsViewModel);
+        }
 
-                List<OrderDetailsViewModel> orderList = new List<OrderDetailsViewModel>();
-                List<OrderHeader> OrderHeaderList = await _db.OrderHeader.Include(o => o.ApplicationUser).Where(u => u.userId == claim.Value).ToListAsync();
-
-                foreach (OrderHeader item in OrderHeaderList)
-                {
-                    OrderDetailsViewModel individual = new OrderDetailsViewModel
-                    {
-                        OrderHeader = item,
-                        OrderDetails = await _db.OrderDetails.Where(o => o.OrderId == item.Id).ToListAsync()
-                    };
-                    orderList.Add(individual);
-                }
-
-                return View(orderList);
-
-            }
-
-            public IActionResult Index()
-            {
-                return View();
-            }
+        public IActionResult Index()
+        {
+            return View();
         }
     }
 }
+
