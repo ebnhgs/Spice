@@ -48,6 +48,7 @@ namespace Spice
             });
 
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<EmailOptions>(Configuration);
 
             services.ConfigureApplicationCookie(options =>
 
@@ -60,7 +61,6 @@ namespace Spice
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 
             });
-
 
 
             services.AddControllersWithViews();

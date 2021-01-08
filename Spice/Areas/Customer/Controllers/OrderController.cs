@@ -21,13 +21,15 @@ namespace Spice.Areas.Customer.Controllers
     public class OrderController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IEmailSender _emailSender;
         private int PageSize = 2;
         [BindProperty]
         public OrderDetailsCart detailCart { get; set; }
 
-        public OrderController(ApplicationDbContext db)
+        public OrderController(ApplicationDbContext db, IEmailSender emailSender)
         {
             _db = db;
+            _emailSender = emailSender;
         }
 
 
@@ -156,7 +158,7 @@ namespace Spice.Areas.Customer.Controllers
             await _db.SaveChangesAsync();
 
             //Email logic to notify user that order is ready for pickup
-            //await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.UserId).FirstOrDefault().Email, "Spice - Order Ready for Pickup " + orderHeader.Id.ToString(), "Order is ready for pickup.");
+            await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.userId).FirstOrDefault().Email, "Spice - Order Ready for Pickup " + orderHeader.Id.ToString(), "Order is ready for pickup.");
 
 
             return RedirectToAction("ManageOrder", "Order");
@@ -170,7 +172,7 @@ namespace Spice.Areas.Customer.Controllers
             orderHeader.Status = SD.StatusCanceled;
             await _db.SaveChangesAsync();
 
-            //await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.UserId).FirstOrDefault().Email, "Spice - Order Cancelled " + orderHeader.Id.ToString(), "Order has been cancelled successfully.");
+            await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.userId).FirstOrDefault().Email, "Spice - Order Cancelled " + orderHeader.Id.ToString(), "Order has been cancelled successfully.");
 
             return RedirectToAction("ManageOrder", "Order");
         }
@@ -278,6 +280,8 @@ namespace Spice.Areas.Customer.Controllers
             OrderHeader orderHeader = await _db.OrderHeader.FindAsync(OrderId);
             orderHeader.Status = SD.StatusCompleted;
             await _db.SaveChangesAsync();
+            await _emailSender.SendEmailAsync(_db.Users.Where(u => u.Id == orderHeader.userId).FirstOrDefault().Email, "Spice - Order completed " + orderHeader.Id.ToString(), "Order is available for pickup.");
+
             return RedirectToAction("OrderPickup", "Order");
         }
 

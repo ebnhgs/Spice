@@ -512,3 +512,6 @@ C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Facebook.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\UserName\Default.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\SendGrid.dll
+C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csprojAssemblyReference.cache
