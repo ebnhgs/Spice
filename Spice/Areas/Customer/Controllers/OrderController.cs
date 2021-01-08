@@ -273,9 +273,9 @@ namespace Spice.Areas.Customer.Controllers
         [Authorize(Roles = SD.FrontDeskUser + "," + SD.ManagerUser)]
         [HttpPost]
         [ActionName("OrderPickup")]
-        public async Task<IActionResult> OrderPickupPost(int orderId)
+        public async Task<IActionResult> OrderPickupPost(int OrderId)
         {
-            OrderHeader orderHeader = await _db.OrderHeader.FindAsync(orderId);
+            OrderHeader orderHeader = await _db.OrderHeader.FindAsync(OrderId);
             orderHeader.Status = SD.StatusCompleted;
             await _db.SaveChangesAsync();
             return RedirectToAction("OrderPickup", "Order");

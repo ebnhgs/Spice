@@ -509,3 +509,4 @@ C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Custom
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_OrderStatus.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\ManageOrder.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\OrderPickup.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_OrderConfirm.cshtml.g.cs
