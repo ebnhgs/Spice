@@ -41,6 +41,12 @@ namespace Spice
 
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = "1326977161020421";
+                facebookOptions.AppSecret = "72c6e32da0df0a7e9b220f51204b16ad";
+            });
+
             services.AddSingleton<IEmailSender, EmailSender>();
 
             services.ConfigureApplicationCookie(options =>

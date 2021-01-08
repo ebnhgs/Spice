@@ -399,7 +399,6 @@ C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\win-x86\n
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csprojAssemblyReference.cache
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.AssemblyInfoInputs.cache
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.AssemblyInfo.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Spice.csproj.CoreCompileInputs.cache
@@ -510,3 +509,6 @@ C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\ManageOrder.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Areas\Customer\Views\Order\OrderPickup.cshtml.g.cs
 C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_OrderConfirm.cshtml.g.cs
+C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\Users\ebn\source\repos\Spice\Spice\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\ebn\source\repos\Spice\Spice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\UserName\Default.cshtml.g.cs
