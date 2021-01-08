@@ -5740,7 +5740,7 @@ a.close.disabled {
 
 .modal-dialog {
   position: relative;
-  width: auto;
+  width: 70%;
   margin: 0.5rem;
   pointer-events: none;
 }

@@ -242,29 +242,11 @@ namespace Spice.Areas.Customer.Controllers
 
             await _db.SaveChangesAsync();
 
-            return RedirectToAction("Confirm", "Cart", new { id = detailCart.OrderHeader.Id });
+            return RedirectToAction("Confirm", "Order", new { id = detailCart.OrderHeader.Id });
 
 
         }
-
-        [Authorize]
-        public async Task<IActionResult> Confirm(int id)
-        {
-            //Retried user id of logged in user
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-            OrderDetailsViewModel orderDetailsViewModel = new OrderDetailsViewModel()
-            {
-                OrderHeader = await _db.OrderHeader.Include(o => o.ApplicationUser).FirstOrDefaultAsync(o => o.Id == id && o.userId == claim.Value),
-                OrderDetails = await _db.OrderDetails.Where(o => o.OrderId == id).ToListAsync()
-            };
-
-            return View(orderDetailsViewModel);
-        }
-
-
-        
+   
         
 
 
